@@ -55,7 +55,7 @@ POST: se usa para enviar algún recurso o información y producir algún cambio 
 
 PUT: Usado para actualizar o reemplazar algún recurso que ya existe en el servidor. <br>
 
-DELETE: Usado para eliminar algún recurso del servidor.<br>
+DELETE: Usado para eliminar algún recurso del servidor.<br><br>
 
 3.	¿Qué es un request y un response en una comunicación HTTP? ¿Qué son los headers? <br>
 
@@ -70,7 +70,7 @@ Content-Type: con el tipo de contenido de la petición, por ejemplo text/html.<b
 User-Agent: que contiene información adicional como el Navegador que se esta ejecutando, el sistema operativo y otros datos.<br>
 Accept: que contiene los Content-Types que se aceptan.<br>
 Accept-Language: contiene los lenguajes que se aceptan<br>
-Host: con la IP de origen.<br>
+Host: con la IP de origen.<br><br>
 
 4.	¿Qué es un queryString? (En el contexto de una url)<br>
 
@@ -82,7 +82,7 @@ https://libros.com/crearLibro?nombreLibro=PilaresDeLaTierra?autor=Follet<br>
 Estos parámetros suelen ser tomados del HTML Form de la pagina.<br>
 Los parámetros son visibles en la forma del ejemplo, siempre y cuando se utilice el método GET. Si utilizo el método POST, los parámetros viajan dentro del BODY. En el lado del servidor, puedo recuperar esos parametros tomandolos del Request, por ejemplo
 let nombreLibro = request.body.nombreLibro.<br>
-Estos parametros siempre viajan como Strings.<br>
+Estos parametros siempre viajan como Strings.<br><br>
 
 5.	¿Qué es el responseCode? ¿Qué significado tiene los posibles valores devueltos?<br>
 
@@ -106,7 +106,7 @@ HTTP Status Code 403 - Acceso Prohibido. El usuario intenta acceder a un recurso
 HTTP Status Code 405 - Metodo no permitido
 HTTP Status Code 410: La pagina ya no existe y no esta disponible. El link que hace referencia a esta pagina ya no servirá mas.<br>
 HTTP Status Code 500- Internal Server Error: Hubo un error en el servidor.<br>
-HTTP Status Code 503 – Servicio no disponible. El servidor no es alcanzable y se debería intentar nuevamente mas tarde. Puede suceder como respuesta a una sobrecarga del servidor, o simple mantenimiento.<br>
+HTTP Status Code 503 – Servicio no disponible. El servidor no es alcanzable y se debería intentar nuevamente mas tarde. Puede suceder como respuesta a una sobrecarga del servidor, o simple mantenimiento.<br><br>
 
 6.	¿Cómo se envía data en un Get y cómo en un POST? <br>
 La información se envia a partir de un formulario html que tiene la estructura básica siguiente:<br>
@@ -116,7 +116,7 @@ La información se envia a partir de un formulario html que tiene la estructura 
 </form><br>
 
 Si utilizo un método GET, la información se envía dentro de la URL, visible al usuario.<br>
-Si utilizo un método POST, la información se envía dentro del Body del request. No visible al usuario en la URL.<br>
+Si utilizo un método POST, la información se envía dentro del Body del request. No visible al usuario en la URL.<br><br>
 
 7.	¿Qué verbo http utiliza el navegador cuando accedemos a una página?<br>
 
@@ -134,7 +134,8 @@ Coma: indica separación entre elementos. <br>
 XML es otro formato usado para intercambiar datos entre aplicaciones. Utiliza una estructura de tags personalizadas para representar objetos y siempre deben tener un tag de cierre. El contenido XML no necesita estar delimitado por comillas, al contrario de JSON. XML no soporta arrays como si lo hace JSON. XML soporta tipos de datos como imágenes, mientras que JSON solo soporta números y textos.<br>
 
 Ejemplo XML:<br>
-<?xml versión='1.0' encoding='UTF-8' ¿>
+
+xml versión='1.0' encoding='UTF-8' ¿>
 <ciudades>
 	<ciudad>
 		<nombre>CABA</nombre>
@@ -142,7 +143,7 @@ Ejemplo XML:<br>
 	<ciudad>
 		<nombre>Posadas</nombre>
 	</ciudad>
-</ciudades>
+</ciudades
 
 
 <br><br>
