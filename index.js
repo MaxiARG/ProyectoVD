@@ -29,6 +29,8 @@ const persona = {
 }
 // Resolucion Ejercicio 4
 app.get('/ejercicio4', (request, response) => {
+    response.setHeader('Content-Type', 'application/json');
+
     let cuerpo = {
         nombre:"maxi",
         apellido:"ramos",
@@ -46,7 +48,7 @@ app.get('/ejercicio4', (request, response) => {
     .then( body => console.log('La repuesta del servidor fue: ', body))
     .catch(err => console.log(err));
 
-    response.send("Ejercicio 4 Ejecutado en el servidor. Mirar la Consola")
+    response.json({"mensaje": "Ejercicio 4 Ejecutado en el servidor. Mirar la Consola"})
 })
 
 //Ruta home o index. Ejecutar esta ruta llama al formulario CrearPersona.html
@@ -57,13 +59,14 @@ app.get('/', (request, response) => {
 
 //Resolucion Ejercicio 5
 app.post('/api/personas',express.json(), (request, response) => {
+    response.setHeader('Content-Type', 'application/json');
     const elBody = request.body
     const validate = ajv.compile(schema)
     const IsValid = validate(elBody)
 
     if (!IsValid) {
         response.status(500)
-        response.send(validate.errors);
+        response.json(validate.errors);
     }else{
 
         const opciones = {
@@ -78,7 +81,7 @@ app.post('/api/personas',express.json(), (request, response) => {
         .catch(err => console.log(err));
 
         response.status(201)
-        response.json(elBody);
+        response.json({"mensaje":"Registro Agregado Exitosamente"});
     }
 
 
@@ -87,6 +90,7 @@ app.post('/api/personas',express.json(), (request, response) => {
 
 //Ejercicio 6. Esta ruta es llamada al poner la URL localhost:3001. No hace falta llamarla explicitamente
 app.post('/api/formulario', (request, response) => {
+    response.setHeader('Content-Type', 'application/json');
     let datos = {
         "nombre":   request.body.nombre,
         "apellido": request.body.apellido,
@@ -101,18 +105,18 @@ app.post('/api/formulario', (request, response) => {
 
     if (!IsValid) {
         response.status(500)
-        response.send(validate.errors);
+        response.json(validate.errors);
     }else{
     response.status(201)
-    response.setHeader('Content-Type', 'text/html');
-    response.sendFile(__dirname + "/RegistroAgregado.html");
+    response.json({"mensaje": "Registro Agregado Exitosamente"});
     }
 });
 
 app.use(function(err, req, res, next) {
     if(err.type == 'entity.parse.failed'){
         res.status(400)
-        res.send("ERROR en la sintaxis JSON. Asegurese que el campo DNI no esta vacio y la sintaxis JSON es correcta");
+        res.setHeader('Content-Type', 'application/json');
+        res.json({"mensaje":"ERROR en la sintaxis JSON. Asegurese que el campo DNI no esta vacio y la sintaxis JSON es correcta"});
     }
    
   });

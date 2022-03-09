@@ -15,7 +15,7 @@ Comando para iniciar el proyecto usando nodemon:
 npm run dev
 
 EJERCICIO 4
-Para ejecutarlo, escribir en la terminal "node mostrarPersonas.js". 
+Para ejecutarlo, escribir en la terminal "node mostrarPersonas.js". Alternativamente llamar http://localhost:3001/ejercicio4
 El metodo usado es GET, y lo que se obtiene son los registros almacenados en la base de datos.
 Alternativamente, con el servidor en el archivo index.js corriendo, la URL para ejecutar esta misma funcionalidad
 es http://localhost:3001/ejercicio4
@@ -47,7 +47,7 @@ Teniendo mi navegador abierto, ingreso una dirección URL y el navegador envia u
 
 2.	¿Qué son los verbos HTTP? Mencionar los más conocidos<br>
 
-También se los llama HTTP request methods, indican la acción que deseamos realizar en el servidor, indican una intencion, por ejemplo si uso el metodo DELETE se entiende que quiere borrar algun objeto del servidor. Entre los métodos más conocidos están POST, GET, PUT, DELETE.<br>
+También se los llama HTTP request methods, indican la acción que deseamos realizar en el servidor, indican una intencion, por ejemplo si uso el metodo DELETE se entiende que quiere borrar algun objeto del servidor. Entre los métodos más conocidos están POST, GET, PUT, DELETE, PATCH.<br>
 
 GET: se usa para solicitar un determinado recurso y no debería realizar cambios en el servidor. En términos de operaciones CRUD se relaciona a la operación de Lectura. La información viaja en la URL, por lo que se debe tener especial cuidado con la protección de información sensible.<br>
 
@@ -96,9 +96,14 @@ La clasificación de los response code se dividen en 5 grupos:<br>
 
 Response Code más importantes:<br>
 HTTP Status Code 200 – OK: Lo mas normal es que todo salga bien y devuelva este código.<br>
+HTTP Status Code 201 - Recurso creado correctamente
+HTTP Status Code 202 - se recibio la solicitud y estara en proceso.
+HTTP Status Code 204 - solicitud exitosa. Respuesta sin contenido
 HTTP Status Code 301 / 302: Redireccionamiento<br>
 HTTP Status Code 404: Pagina no encontrada<br>
 HTTP Status Code 401: Error que se produce cuando se requiere una autenticación pero se produjo un error o no se entrego dicha autenticación.<br>
+HTTP Status Code 403 - Acceso Prohibido. El usuario intenta acceder a un recurso el cual no tiene permiso.
+HTTP Status Code 405 - Metodo no permitido
 HTTP Status Code 410: La pagina ya no existe y no esta disponible. El link que hace referencia a esta pagina ya no servirá mas.<br>
 HTTP Status Code 500- Internal Server Error: Hubo un error en el servidor.<br>
 HTTP Status Code 503 – Servicio no disponible. El servidor no es alcanzable y se debería intentar nuevamente mas tarde. Puede suceder como respuesta a una sobrecarga del servidor, o simple mantenimiento.<br>
@@ -186,10 +191,14 @@ Soap:encodingStyle=http://www.w3.org/2003/05/soap-encoding>
 
 10.	Explicar brevemente el estándar REST Full<br>
 
-Rest full son los servicios web que implementan la arquitectura REST.<br>
+A grandes razcos, es una aplicacion web en el lado del backend, un servicio web.
+En este sentido, en el lado del servidor estan configuradas una serie de rutas y metodos, que hacen funcionalidades logicas especificas, que pueden ser consumidas mediante HTTP por cualquier tipo de sistema que entienda HTTP. Por ejemplo, un metodo para crear usuarios, metodos para hacer registros, eliminar registros, busquedas, etc. Cada uno de estos metodos tendra definida una ruta especifica y un metodo HTTP especifico (GET, PUT, etc). Normalmente las rutas van a devolver los datos en formato XML o JSON. El servicio estara disponible por ejemplo, para aplicaciones web, aplicaciones mobiles o cualquier otro sistema.
+<br><br>
+1- En general, las Api Rest representan recursos. Las rutas deberian definirse en terminos del recurso, y mediante los metodos HTTP definir la accion sobre ese recurso.
+Por ejemplo,  DELETE /producto/123 
 
+11.	¿Qué son los headers en un request? ¿Para qué se utiliza el key Content-type en un header? <br>
 
-11.	¿Qué son los headers en un request? ¿Para qué se utiliza el key Content-type en un header?<br>
 
 El header forma parte de un request, y su función es la de enviar información adicional sobre el contexto del request.<br>
 Por ejemplo el campo Accept-* especifica que formato es preferido y aceptado en el response.<br>
