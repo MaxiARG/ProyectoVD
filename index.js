@@ -25,9 +25,15 @@ const schema = {
   const persona = {
     "nombre": "maxi",
     "apellido":  "ramos",
-    "dni": 11111111, 
-
+    "dni": 11111111,
 }
+
+app.get('/', (request, response) => {
+    response.setHeader('Content-Type', 'text/html');
+    response.sendFile(__dirname + "/crearPersonas.html");
+})
+
+//Ejercicio numero 5 del TP
 app.post('/api/personas',express.json(), (request, response) => {
     const elBody = request.body
     const validate = ajv.compile(schema)
@@ -40,20 +46,43 @@ app.post('/api/personas',express.json(), (request, response) => {
 
         const opciones = {
             uri: URL,
-            method: 'GET',
-            body: persona,
-            json: true
+            method: 'GET', //Si lo cambio por un GET me hace un retrieve de la base de datos
+            body: elBody,
+            json: true,
         }
 
         promise(opciones)
         .then( body => console.log('El servidor responde: ', body) )
         .catch(err => console.log(err));
-        
+
         response.status(201)
         response.json(elBody);
     }
 
 
+});
+
+
+
+app.post('/api/formulario', (request, response) => {
+    let datos = {
+        "nombre":request.query.nombre,
+        "apellido": request.query.apellido,
+        "dni": Number.parseInt(request.query.dni)
+    }
+    const validate = ajv.compile(schema)
+    const IsValid = validate(datos)
+
+    console.log("/api/formulario recibió: ")
+    console.log(JSON.stringify(datos))
+
+    if (!IsValid) {
+        response.status(500)
+        response.send(validate.errors);
+    }else{
+    response.status(201)
+    response.json(datos)
+    }
 });
 
 app.use(function(err, req, res, next) {
