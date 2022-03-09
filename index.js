@@ -45,10 +45,13 @@ app.get('/ejercicio4', (request, response) => {
     }
 
     promise(opciones)
-    .then( body => console.log('La repuesta del servidor fue: ', body))
+    .then( body => {
+         console.log('La repuesta del servidor fue: ', body);
+         response.json(body);
+        })
     .catch(err => console.log(err));
 
-    response.json({"mensaje": "Ejercicio 4 Ejecutado en el servidor. Mirar la Consola"})
+    //response.json({"mensaje": "Ejercicio 4 Ejecutado en el servidor. Mirar la Consola"})
 })
 
 //Ruta home o index. Ejecutar esta ruta llama al formulario CrearPersona.html
@@ -69,7 +72,7 @@ app.post('/api/personas',express.json(), (request, response) => {
         response.json(validate.errors);
     }else{
 
-        const opciones = {
+        let opciones = {
             uri: URL,
             method: 'POST', //Si lo cambio por un GET me hace un retrieve de la base de datos
             body: elBody,
@@ -77,11 +80,13 @@ app.post('/api/personas',express.json(), (request, response) => {
         }
 
         promise(opciones)
-        .then( body => console.log('El servidor responde: ', body) )
+        .then( body => {
+            console.log('El servidor responde: ', body);
+            response.status(201);
+            response.json(body);
+            } )
         .catch(err => console.log(err));
-
-        response.status(201)
-        response.json({"mensaje":"Registro Agregado Exitosamente"});
+       // response.json({"mensaje":"Registro Agregado Exitosamente"});
     }
 
 
@@ -107,9 +112,21 @@ app.post('/api/formulario', (request, response) => {
         response.status(500)
         response.json(validate.errors);
     }else{
-    response.status(201)
-    response.json({"mensaje": "Registro Agregado Exitosamente"});
-    }
+
+        let opciones = {
+            uri: URL,
+            method: 'POST', //Si lo cambio por un GET me hace un retrieve de la base de datos
+            body: datos,
+            json: true,
+        }
+        promise(opciones)
+            .then( body => {
+                console.log('El servidor responde: ', body);
+                response.status(201);
+                response.json(body);
+                } )
+            .catch(err => console.log(err));
+    }//fin del else
 });
 
 app.use(function(err, req, res, next) {

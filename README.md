@@ -35,7 +35,7 @@ EJERCICIO 5<br>
 EJERCICIO 6<br>
 1- Ingresar la ruta http://localhost:3001/<br>
 2- llenar el formulario con informacion valida<br>
-3- Presionar enviar. Si los datos fueron correctos, se muestra mensaje de Registro exitoso.<br>
+3- Presionar enviar. Si los datos fueron correctos, se muestra un JSON con el mensaje exitoso.<br>
 4- Si los datos son invalidos segun el requerimiento original, se muestra el log con el error<br>
 
 <br><br><br>
