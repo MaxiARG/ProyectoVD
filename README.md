@@ -15,13 +15,12 @@ Comando para iniciar el proyecto usando nodemon:<br>
 npm run dev<br>
 
 EJERCICIO 4<br>
-Para ejecutarlo, escribir en la terminal "node mostrarPersonas.js". Alternativamente llamar http://localhost:3001/ejercicio4
+Para ejecutarlo llamar http://localhost:3001/ejercicio4
 El metodo usado es GET, y lo que se obtiene son los registros almacenados en la base de datos.
-Alternativamente, con el servidor en el archivo index.js corriendo, la URL para ejecutar esta misma funcionalidad
-es http://localhost:3001/ejercicio4<br><br>
+<br><br>
 
 EJERCICIO 5<br>
-1- Con el servidor corriendo, la ruta para acceder a esta funcionalidad es http://localhost:3001/api/personas  <br>
+1- Con el servidor corriendo, Usar POSTMAN con la ruta http://localhost:3001/api/personas  <br>
 2- En Postman ingresar dicha ruta. Seleccionar el metodo POST. En el body seleccionar Raw y escribir el siguiente JSON<br>
 {
     "nombre" : "maxi",
