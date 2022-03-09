@@ -1,6 +1,12 @@
 # ProyectoVD
-Proyecto Virtual Dreams
-
+Proyecto Virtual Dreams.
+<br><br>
+Herramientas Usadas:<br>
+Visual Studio Code<br>
+Gitbash<br>
+Postman<br>
+Firefox<br>
+<br><br>
 Para el ejercicio 5 se usaron las siguientes dependencias:<br>
 Express<br>
 Ajv<br>
