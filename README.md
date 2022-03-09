@@ -21,7 +21,7 @@ Alternativamente, con el servidor en el archivo index.js corriendo, la URL para 
 es http://localhost:3001/ejercicio4
 
 EJERCICIO 5
-1- Con el servidor corriendo, la ruta para acceder a esta funcionalidad es http://localhost:3001/api/personas
+1- Con el servidor corriendo, la ruta para acceder a esta funcionalidad es http://localhost:3001/api/personas  <br>
 2- En Postman ingresar dicha ruta. Seleccionar el metodo POST. En el body seleccionar Raw y escribir el siguiente JSON
 {
     "nombre" : "maxi",
