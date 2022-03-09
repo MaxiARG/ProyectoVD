@@ -110,11 +110,11 @@ HTTP Status Code 503 – Servicio no disponible. El servidor no es alcanzable y 
 
 6.	¿Cómo se envía data en un Get y cómo en un POST? <br>
 La información se envia a partir de un formulario html que tiene la estructura básica siguiente:<br>
-
+```xml
 <form action='accionServidor' method='POST|GET|DELETE|etc'> <br>
 […]<br>
 </form><br>
-
+```
 Si utilizo un método GET, la información se envía dentro de la URL, visible al usuario.<br>
 Si utilizo un método POST, la información se envía dentro del Body del request. No visible al usuario en la URL.<br><br>
 
@@ -173,7 +173,7 @@ C-	Body, que contiene información de la llamada y la respuesta<br>
 D-	Fault, que contiene errores y códigos de estado.<br>
 
 A muy grandes rasgos, el esqueleto que forma un mensaje SOAP es el siguiente:<br>
-
+```xml
 <?xml versión=”1.0”>
 
 <soap:Envelope
@@ -190,7 +190,7 @@ Soap:encodingStyle=http://www.w3.org/2003/05/soap-encoding>
 </soap:Body>
 
 </soap:Envelope>
-
+```
 
 10.	Explicar brevemente el estándar REST Full<br>
 
