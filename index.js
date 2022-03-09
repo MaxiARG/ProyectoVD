@@ -1,91 +1,61 @@
 const express = require('express')
 const app = express()
 
-const automoviles = [
-    {
-    "marca":"ford",
-    "modelo":"1967",
-    "ruedas": 4,
-    "color": "Rojoo"
+const Ajv = require("ajv")
+const ajv = new Ajv() 
+
+const promise = require('request-promise')
+const URL = 'https://reclutamiento-14cf7.firebaseio.com/personas.json';
+//http://localhost:3001/api/personas
+
+
+const PORT = 3001;
+
+//Usado para validar el formato y estructura del JSON
+const schema = {
+    type: "object",
+    properties: {
+      nombre: {type: "string"},
+      apellido: {type: "string", nullable: false, maxLength: 15, minLength: 1},
+      dni:{type: "integer", maximum: 9999999999, minimum: 1000000}
     },
-    {
-    "marca":"Chevrolet",
-    "modelo":"2002",
-    "ruedas": 3,
-    "color": "blanco"
-    }
-];
+    required: ["apellido", "dni"],
+    additionalProperties: false
+  }
+  const persona = {
+    "nombre": "maxi",
+    "apellido":  "ramos",
+    "dni": 11111111, 
 
-app.get('/', (request, response) => {
-    response.send('<h1>Hola Mundo g</h1>');
-})
-
-app.get('/api/notes', (request, response) => {
-    response.json(JSON.stringify(automoviles));
-})
-
-app.get('/api/notes/:id', (request, response) => {  
-    const id = request.params.id;
-    console.log(id);
-    let coincidencia = automoviles.find(auto => auto.marca == id)
-    if(coincidencia){
-        response.status(200);
-        response.send(coincidencia.modelo);
-    }else{
-        response.status(404).end();
-       // response.send('<h1>ERORR 404</h1>')
-    }
-
-})
-
-//
+}
 app.post('/api/personas',express.json(), (request, response) => {
-   try{ 
     const elBody = request.body
-    console.log("La informacion recibida se detalla a continuacion: ");
-    console.log("Nombre: " + elBody.nombre + " Apellido: " + elBody.apellido + " DNI: " + elBody.dni);
-    //Validar Apellido no es cero
-    if(elBody.apellido == '' || elBody.apellido.lenght == 0){
-        response.send("Appellido no puede ser cero")
-    }
-    const numDNI = elBody.dni.toString()
-    //Validar Numero DNI
-    if(numDNI.length == 0 || numDNI == '' || numDNI.length >= 10){
+    const validate = ajv.compile(schema)
+    const IsValid = validate(elBody)
+
+    if (!IsValid) {
         response.status(500)
-        response.send("Error en DNI. El tamaño debe ser mayor a cero y no puede superar los 10 digitos.")
-    }
-
-    //Valida que Nombre sea string
-    if(typeof(elBody.nombre) !== 'string'){
-        response.status(500)
-        response.send("El campo nombre debe ser una cadena de texto");
-    }
-    //Valida que Apellido sea String
-    if(typeof(elBody.apellido) !== 'string'){
-        response.status(500).send("El campo apellido debe ser una cadena de texto");
-    }
-
-    //Todo OK retorno el Json
-    response.json(elBody);
-
-    }catch(error){
-       // console.log(error)
-        response.send("Error al procesar JSON")
-    }
-})
-
-app.delete('/api/notes/:id', (request, response) => {
-    const id = request.params.id;
-    console.log(id);
-    let coincidencias = automoviles.filter(auto => auto.marca != id)
-    if(coincidencias){
-        response.status(200);
-        response.json(coincidencias);
+        response.send(validate.errors);
     }else{
-        response.status(404).end();
+
+        const opciones = {
+            uri: URL,
+            method: 'GET',
+            body: persona,
+            json: true
+        }
+
+        promise(opciones)
+        .then( body => console.log('El servidor responde: ', body) )
+        .catch(err => console.log(err));
+        
+        response.status(201)
+        response.json(elBody);
     }
 
-})
+
+});
+
 app.use(function(err, req, res, next) {
     if(err.type == 'entity.parse.failed'){
         res.status(400)
@@ -94,7 +64,7 @@ app.use(function(err, req, res, next) {
    
   });
 
-const PORT = 3001;
+
 app.listen(PORT, () => {
-    console.log('Server running on port 3001');
+    console.log('Servidor funcionando en el puerto 3001');
 });

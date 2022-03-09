@@ -1,8 +1,12 @@
 # ProyectoVD
 Proyecto Virtual Dreams
 
-Para ejecutar el punto 5, el proyecto utilizó Express. La extension nodemon se utilizó solo en el ambiente Dev por lo que 
-no deberia ser necesario tenerlo instalado. Nodemon sirve para reiniciar el servidor cada vez que se detecta un cambio, una suerte de HotReload.
+Para el ejercicio 5 se usaron las siguientes dependencias:
+Express
+Ajv
+Promise
+Request-Promise
+Nodemon (solo en modo dev, a modo de hot-reload)
 
 Comandos para iniciar el proyecto:
 npm index.js
