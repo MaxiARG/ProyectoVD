@@ -46,12 +46,10 @@ app.get('/ejercicio4', (request, response) => {
 
     promise(opciones)
     .then( body => {
-         console.log('La repuesta del servidor fue: ', body);
-         response.json(body);
+         console.log('La repuesta del servidor fue: ', body); //Respuesta por consola
+         response.json(body); //Respuesta al cliente
         })
     .catch(err => console.log(err));
-
-    //response.json({"mensaje": "Ejercicio 4 Ejecutado en el servidor. Mirar la Consola"})
 })
 
 //Ruta home o index. Ejecutar esta ruta llama al formulario CrearPersona.html
@@ -60,7 +58,7 @@ app.get('/', (request, response) => {
     response.sendFile(__dirname + "/crearPersonas.html");
 })
 
-//Resolucion Ejercicio 5
+//Resolucion Ejercicio 5. Solo llamado mediante Postman con un payload Json en el body
 app.post('/api/personas',express.json(), (request, response) => {
     response.setHeader('Content-Type', 'application/json');
     const elBody = request.body
@@ -81,12 +79,10 @@ app.post('/api/personas',express.json(), (request, response) => {
 
         promise(opciones)
         .then( body => {
-            console.log('El servidor responde: ', body);
             response.status(201);
             response.json(body);
             } )
         .catch(err => console.log(err));
-       // response.json({"mensaje":"Registro Agregado Exitosamente"});
     }
 
 
@@ -94,7 +90,9 @@ app.post('/api/personas',express.json(), (request, response) => {
 
 
 //Ejercicio 6. Esta ruta es llamada al poner la URL localhost:3001. No hace falta llamarla explicitamente
+//El servicio es llamado mediante la vista CrearPersonas
 app.post('/api/formulario', (request, response) => {
+    
     response.setHeader('Content-Type', 'application/json');
     let datos = {
         "nombre":   request.body.nombre,
