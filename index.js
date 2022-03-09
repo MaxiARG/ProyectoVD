@@ -1,15 +1,13 @@
 const express = require('express')
 const app = express()
 
-app.use(express.urlencoded({ extended: true })) // for form data
+app.use(express.urlencoded({ extended: true })) //Para extraer datos del formulario
 
 const Ajv = require("ajv")
 const ajv = new Ajv() 
 
 const promise = require('request-promise')
 const URL = 'https://reclutamiento-14cf7.firebaseio.com/personas.json';
-//http://localhost:3001/api/personas
-
 
 const PORT = 3001;
 
@@ -24,18 +22,40 @@ const schema = {
     required: ["apellido", "dni"],
     additionalProperties: false
   }
-  const persona = {
+const persona = {
     "nombre": "maxi",
     "apellido":  "ramos",
     "dni": 11111111,
 }
+// Resolucion Ejercicio 4
+app.get('/ejercicio4', (request, response) => {
+    let cuerpo = {
+        nombre:"maxi",
+        apellido:"ramos",
+        dni:35068917
+    }
+    
+    let opciones = {
+        url: URL,
+        method: 'GET',
+        body: cuerpo,
+        json:true
+    }
 
+    promise(opciones)
+    .then( body => console.log('La repuesta del servidor fue: ', body))
+    .catch(err => console.log(err));
+
+    response.send("Ejercicio 4 Ejecutado en el servidor. Mirar la Consola")
+})
+
+//Ruta home o index. Ejecutar esta ruta llama al formulario CrearPersona.html
 app.get('/', (request, response) => {
     response.setHeader('Content-Type', 'text/html');
     response.sendFile(__dirname + "/crearPersonas.html");
 })
 
-//Ejercicio numero 5 del TP
+//Resolucion Ejercicio 5
 app.post('/api/personas',express.json(), (request, response) => {
     const elBody = request.body
     const validate = ajv.compile(schema)
@@ -48,7 +68,7 @@ app.post('/api/personas',express.json(), (request, response) => {
 
         const opciones = {
             uri: URL,
-            method: 'GET', //Si lo cambio por un GET me hace un retrieve de la base de datos
+            method: 'POST', //Si lo cambio por un GET me hace un retrieve de la base de datos
             body: elBody,
             json: true,
         }
@@ -65,18 +85,14 @@ app.post('/api/personas',express.json(), (request, response) => {
 });
 
 
-
+//Ejercicio 6. Esta ruta es llamada al poner la URL localhost:3001. No hace falta llamarla explicitamente
 app.post('/api/formulario', (request, response) => {
-    console.log(request.body.apellido)
-    console.log(request.body.nombre)
-    console.log(request.body.dni)
-
     let datos = {
         "nombre":   request.body.nombre,
         "apellido": request.body.apellido,
         "dni":      Number.parseInt(request.body.dni)
     }
-
+    //Valido JSON
     const validate = ajv.compile(schema)
     const IsValid = validate(datos)
 
