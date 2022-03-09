@@ -1,24 +1,24 @@
 # ProyectoVD
 Proyecto Virtual Dreams
 
-Para el ejercicio 5 se usaron las siguientes dependencias:
-Express
-Ajv
-Promise
-Request-Promise
-Nodemon (solo en modo dev, a modo de hot-reload)
+Para el ejercicio 5 se usaron las siguientes dependencias:<br>
+Express<br>
+Ajv<br>
+Promise<br>
+Request-Promise<br>
+Nodemon (solo en modo dev, a modo de hot-reload)<br>
 
-Comandos para iniciar el proyecto:
-npm run start
+Comandos para iniciar el proyecto:<br>
+npm run start<br>
 
-Comando para iniciar el proyecto usando nodemon:
-npm run dev
+Comando para iniciar el proyecto usando nodemon:<br>
+npm run dev<br>
 
-EJERCICIO 4
+EJERCICIO 4<br>
 Para ejecutarlo, escribir en la terminal "node mostrarPersonas.js". Alternativamente llamar http://localhost:3001/ejercicio4
 El metodo usado es GET, y lo que se obtiene son los registros almacenados en la base de datos.
 Alternativamente, con el servidor en el archivo index.js corriendo, la URL para ejecutar esta misma funcionalidad
-es http://localhost:3001/ejercicio4
+es http://localhost:3001/ejercicio4<br><br>
 
 EJERCICIO 5<br>
 1- Con el servidor corriendo, la ruta para acceder a esta funcionalidad es http://localhost:3001/api/personas  <br>
@@ -30,7 +30,7 @@ EJERCICIO 5<br>
 }<br>
 3- en Headers, agregar la key Content-Type y en Value application/json<br>
 4- Presionar SEND. En la consola del servidor se vera la respuesta con un par Key:Value como el siguiente:<br>
-{ name: '-Mxj7CuRlF0-jmdry2vS' }<br>
+{ name: '-Mxj7CuRlF0-jmdry2vS' }<br><br>
 
 EJERCICIO 6<br>
 1- Ingresar la ruta http://localhost:3001/<br>
