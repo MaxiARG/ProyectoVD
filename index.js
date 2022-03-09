@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+app.use(express.urlencoded({ extended: true })) // for form data
+
 const Ajv = require("ajv")
 const ajv = new Ajv() 
 
@@ -65,11 +67,16 @@ app.post('/api/personas',express.json(), (request, response) => {
 
 
 app.post('/api/formulario', (request, response) => {
+    console.log(request.body.apellido)
+    console.log(request.body.nombre)
+    console.log(request.body.dni)
+
     let datos = {
-        "nombre":request.query.nombre,
-        "apellido": request.query.apellido,
-        "dni": Number.parseInt(request.query.dni)
+        "nombre":   request.body.nombre,
+        "apellido": request.body.apellido,
+        "dni":      Number.parseInt(request.body.dni)
     }
+
     const validate = ajv.compile(schema)
     const IsValid = validate(datos)
 
@@ -81,7 +88,8 @@ app.post('/api/formulario', (request, response) => {
         response.send(validate.errors);
     }else{
     response.status(201)
-    response.json(datos)
+    response.setHeader('Content-Type', 'text/html');
+    response.sendFile(__dirname + "/RegistroAgregado.html");
     }
 });
 
