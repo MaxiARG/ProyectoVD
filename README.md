@@ -135,7 +135,8 @@ XML es otro formato usado para intercambiar datos entre aplicaciones. Utiliza un
 
 Ejemplo XML:<br>
 
-xml versión='1.0' encoding='UTF-8' ¿>
+```xml
+<xml versión='1.0' encoding='UTF-8' ¿>
 <ciudades>
 	<ciudad>
 		<nombre>CABA</nombre>
@@ -143,7 +144,8 @@ xml versión='1.0' encoding='UTF-8' ¿>
 	<ciudad>
 		<nombre>Posadas</nombre>
 	</ciudad>
-</ciudades
+</ciudades>
+```
 
 
 <br><br>
